@@ -1,0 +1,108 @@
+.chat-container {
+    /* Rest of the styles */
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    display: flex;
+}
+
+.sent {
+    justify-content: flex-start; /* Update alignment to flex-start */
+}
+
+.received {
+    justify-content: flex-end; /* Update alignment to flex-end */
+}
+
+.message-paper {
+    /* Rest of the styles */
+}
+
+.message-label {
+    /* Rest of the styles */
+}
+
+.message-text {
+    /* Rest of the styles */
+}
+
+.input-container {
+    /* Rest of the styles */
+}
+
+.MuiTextField-root {
+    /* Rest of the styles */
+}
+
+.MuiButton-root {
+    /* Rest of the styles */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.chat-container {*/
+/*    width: 100%;*/
+/*    max-width: 400px;*/
+/*    margin: 0 auto;*/
+/*    background-color: #ffffff;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+/*    padding: 20px;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.message-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.message {*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.user-message {*/
+/*    background-color: #e3f2fd;*/
+/*    !*align-self: flex-end;*!*/
+/*    justify-content: flex-end;*/
+/*}*/
+
+/*.bot-message {*/
+/*    background-color: #a6c999;*/
+/*    !*align-self: flex-start;*!*/
+/*    !*justify-content: flex-start;*!*/
+/*    text-align: end;*/
+/*}*/
+
+
+/*.input-container {*/
+/*    display: flex;*/
+/*    gap: 10px;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.MuiTextField-root {*/
+/*    flex: 1;*/
+/*}*/
+
+/*.MuiButton-root {*/
+/*    height: 40px;*/
+/*}*/
