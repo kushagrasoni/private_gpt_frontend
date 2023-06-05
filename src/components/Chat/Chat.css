@@ -1,5 +1,12 @@
 .chat-container {
-    /* Rest of the styles */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .message-container {
@@ -10,14 +17,18 @@
 
 .message {
     display: flex;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.sent {
-    justify-content: flex-start; /* Update alignment to flex-start */
+.left {
+    text-align: left;
+    justify-content: flex-start;
 }
 
-.received {
-    justify-content: flex-end; /* Update alignment to flex-end */
+.right {
+    text-align: right;
+    justify-content: flex-end;
 }
 
 .message-paper {
@@ -43,6 +54,7 @@
 .MuiButton-root {
     /* Rest of the styles */
 }
+
 
 
 

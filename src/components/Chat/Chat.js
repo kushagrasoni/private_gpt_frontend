@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Paper, Typography, TextField, Button } from '@mui/material';
+import React, {useState} from 'react';
+import {Paper, Typography, TextField, Button} from '@mui/material';
 import axios from 'axios';
 import Message from "../Message/Message";
 import "./Chat.css";
@@ -19,15 +19,15 @@ const Chat = () => {
     };
 
     const handleSubmit = async () => {
-        const userInputMessage = { text: inputText, sender: 'user' };
+        const userInputMessage = {text: inputText, sender: 'user'};
         setMessages((prevMessages) => [...prevMessages, userInputMessage]);
 
         try {
-            const response = await axios.get('http://localhost:5000/pvt_gpt/', {
-                params: { query: inputText },
+            const response = await axios.get('http://localhost:5000/pvt_gpt', {
+                params: {query: inputText},
             });
-
-            const botReplyMessage = { text: response.data.reply, sender: 'bot' };
+            console.log(response)
+            const botReplyMessage = {text: response.data.reply, sender: 'bot'};
             setMessages((prevMessages) => [...prevMessages, botReplyMessage]);
         } catch (error) {
             console.error(error);
@@ -41,7 +41,11 @@ const Chat = () => {
         <Paper elevation={3} className="chat-container">
             <div className="message-container">
                 {messages.map((message, index) => (
-                    <Message key={index} sender={message.sender} text={message.text} />
+                    <Message key={index}
+                             sender={message.sender}
+                             text={message.text}
+                             className={`message ${message.sender === 'user' ? 'left' : 'right'}`}
+                    />
                 ))}
             </div>
             <div className="input-container">
