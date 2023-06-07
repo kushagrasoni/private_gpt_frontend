@@ -30,8 +30,9 @@ const Chat = ({ handleNewMessage } ) => {
 
         if (inputText !== '') {
             try {
-                const response = await axios.get('http://54.167.71.250:5000/pvt_gpt', {
-                    params: {query: inputText},
+                const response = await axios.get('http://54.167.71.250:5000/pvt_gpt',
+                    {params: {query: inputText},
+                        timeout: 10000000
                 });
 
                 const botMessage = {text: response.data.reply, sender: 'bot'};
