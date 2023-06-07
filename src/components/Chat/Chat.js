@@ -30,7 +30,7 @@ const Chat = ({ handleNewMessage } ) => {
 
         if (inputText !== '') {
             try {
-                const response = await axios.get('http://localhost:5000/pvt_gpt', {
+                const response = await axios.get('http://54.167.71.250:5000/pvt_gpt', {
                     params: {query: inputText},
                 });
 
