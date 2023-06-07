@@ -1,0 +1,79 @@
+/* Terminal.css */
+.terminal-container {
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    overflow-y: auto; /* Add a vertical scroll bar when needed */
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.terminal-container::-webkit-scrollbar {
+    width: 12px; /* Width of the scroll bar */
+    height: 12px;
+}
+
+.terminal-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the scroll bar track */
+}
+
+.terminal-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scroll bar thumb */
+    border-radius: 5px; /* Rounded corners of the scroll bar thumb */
+}
+
+.terminal-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the scroll bar thumb on hover */
+}
+
+.terminal-header {
+    background-color: #000;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.terminal-body {
+    padding: 10px;
+    font-family: monospace;
+    white-space: pre;
+    gap: 10px;
+    max-height: 450px;
+}
+
+
+.terminal-message {
+    padding: 10px;
+    overflow-wrap: break-word; /* Wrap long words to next line */
+    word-wrap: break-word; /* For compatibility with older browsers */
+    white-space: normal; /* Reset white-space property */
+}
+
+.terminal-user {
+    display: flex;
+    word-wrap: break-word; /* Wrap long words to next line */
+    max-width: 100%; /* Set the maximum width of the message */
+    overflow: hidden; /* Hide any overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.terminal-bot {
+    display: flex;
+    word-wrap: break-word; /* Wrap long words to next line */
+    max-width: 100%; /* Set the maximum width of the message */
+    overflow: hidden; /* Hide any overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}

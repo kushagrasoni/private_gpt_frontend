@@ -1,51 +1,63 @@
-import React, {useState} from 'react';
-import {Paper, Typography, TextField, Button} from '@mui/material';
-import axios from 'axios';
-import Message from "../Message/Message";
-import "./Chat.css";
+import React, {useEffect, useRef, useState} from 'react';
+import { Paper, TextField, Button } from '@mui/material';
+import Message from '../Message/Message';
+import './Chat.css';
+import axios from "axios";
 
-const Chat = () => {
+const Chat = ({ handleNewMessage } ) => {
     const [inputText, setInputText] = useState('');
     const [messages, setMessages] = useState([]);
+    const chatContainerRef = useRef(null);
+    const messageContainerRef = useRef(null);
 
     const handleInputChange = (event) => {
         setInputText(event.target.value);
     };
 
-    const handleInputKeyDown = (e) => {
-        if (e.key === 'Enter') {
+    const handleInputKeyDown = (event) => {
+        if (event.key === 'Enter') {
             handleSubmit();
         }
     };
 
     const handleSubmit = async () => {
-        const userInputMessage = {text: inputText, sender: 'user'};
-        setMessages((prevMessages) => [...prevMessages, userInputMessage]);
-
-        try {
-            const response = await axios.get('http://localhost:5000/pvt_gpt', {
-                params: {query: inputText},
-            });
-            console.log(response)
-            const botReplyMessage = {text: response.data.reply, sender: 'bot'};
-            setMessages((prevMessages) => [...prevMessages, botReplyMessage]);
-        } catch (error) {
-            console.error(error);
-            // Handle error response
-        }
-
+        const userMessage = {text: inputText, sender: 'user'};
+        setMessages((prevMessages) => [...prevMessages, userMessage]);
         setInputText('');
+
+        // Send user message to Terminal component
+        handleNewMessage(userMessage);
+
+        if (inputText !== '') {
+            try {
+                const response = await axios.get('http://localhost:5000/pvt_gpt', {
+                    params: {query: inputText},
+                });
+
+                const botMessage = {text: response.data.reply, sender: 'bot'};
+                setMessages((prevMessages) => [...prevMessages, botMessage]);
+
+                // Send bot response to Terminal component
+                handleNewMessage(botMessage);
+            } catch (error) {
+                console.error(error);
+                // Handle error response
+            }
+        };
     };
 
+    useEffect(() => {
+        // Scroll to the bottom of the chat container when new messages are added
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+    }, [messages]);
+
+
     return (
-        <Paper elevation={3} className="chat-container">
-            <div className="message-container">
+        <Paper elevation={3} className="chat-container" ref={chatContainerRef}>
+            <div className="message-container" ref={messageContainerRef}>
                 {messages.map((message, index) => (
-                    <Message key={index}
-                             sender={message.sender}
-                             text={message.text}
-                             className={`message ${message.sender === 'user' ? 'left' : 'right'}`}
-                    />
+                    <Message key={index} sender={message.sender} text={message.text} />
                 ))}
             </div>
             <div className="input-container">
@@ -55,8 +67,12 @@ const Chat = () => {
                     value={inputText}
                     onChange={handleInputChange}
                     onKeyDown={handleInputKeyDown}
+                    className="input-field"
                 />
-                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                <Button variant="contained"
+                        color="primary"
+                        onClick={handleSubmit}
+                >
                     Submit
                 </Button>
             </div>
@@ -65,54 +81,3 @@ const Chat = () => {
 };
 
 export default Chat;
-
-// import React, { useState } from 'react';
-// import { Paper, Typography, TextField, Button } from '@mui/material';
-// import Message from "../Message/Message";
-// import "./Chat.css";
-//
-//
-// const Chat = (props) => {
-//     const [inputText, setInputText] = useState('');
-//     const messages = props.messages;
-//     const onSendMessage = props.onSendMessage;
-//
-//     const handleInputChange = (event) => {
-//         setInputText(event.target.value);
-//     };
-//
-//     const handleSubmit = async () => {
-//         if (inputText.trim() === '') return;
-//         onSendMessage(inputText);
-//
-//         setInputText('');
-//     };
-//
-//     return (
-//         <Paper elevation={3} className="chat-container">
-//             <div className="message-container">
-//                 {messages.map((message, index) => (
-//                     <Message
-//                         key={index}
-//                         text={message.text}
-//                         sender={message.sender}
-//                         className={message.sender === 'You' ? 'sent' : 'received'}
-//                     />
-//                 ))}
-//             </div>
-//             <div className="input-container">
-//                 <TextField
-//                     label="Type your message"
-//                     variant="outlined"
-//                     value={inputText}
-//                     onChange={handleInputChange}
-//                 />
-//                 <Button variant="contained" color="primary" onClick={handleSubmit}>
-//                     Submit
-//                 </Button>
-//             </div>
-//         </Paper>
-//     );
-// };
-//
-// export default Chat;
