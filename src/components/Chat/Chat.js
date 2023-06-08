@@ -31,7 +31,7 @@ const Chat = ({ handleNewMessage } ) => {
         if (inputText !== '') {
             try {
                 // http://54.167.71.250:5000/pvt_gpt
-                const response = await axios.get('http://54.167.71.250:5000/pvt_gpt2',
+                const response = await axios.get('http://localhost:5000/pvt_gpt2',
                     {params: {query: inputText},
                         timeout: 10000000
                 });
@@ -45,7 +45,7 @@ const Chat = ({ handleNewMessage } ) => {
                 console.error(error);
                 // Handle error response
             }
-        };
+        }
     };
 
     useEffect(() => {
