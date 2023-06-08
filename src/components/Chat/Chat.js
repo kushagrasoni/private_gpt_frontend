@@ -38,7 +38,7 @@ const Chat = ({ handleNewMessage } ) => {
                         headers: {
                             'Access-Control-Allow-Origin': '*', // Set the Access-Control-Allow-Origin header
                         },
-                        withCredentials: true,
+                        withCredentials: false,
                 });
 
                 const botMessage = {text: response.data.reply, sender: 'bot'};
