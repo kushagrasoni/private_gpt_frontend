@@ -10,6 +10,7 @@ const Chat = ({ handleNewMessage } ) => {
     const chatContainerRef = useRef(null);
     const messageContainerRef = useRef(null);
 
+
     const handleInputChange = (event) => {
         setInputText(event.target.value);
     };
@@ -33,7 +34,10 @@ const Chat = ({ handleNewMessage } ) => {
                 // http://54.167.71.250:5000/pvt_gpt
                 const response = await axios.get('http://54.167.71.250:5000/pvt_gpt2',
                     {params: {query: inputText},
-                        timeout: 10000000
+                        timeout: 10000000,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*', // Set the Access-Control-Allow-Origin header
+                        }
                 });
 
                 const botMessage = {text: response.data.reply, sender: 'bot'};
