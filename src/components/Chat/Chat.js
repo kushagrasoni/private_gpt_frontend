@@ -37,7 +37,8 @@ const Chat = ({ handleNewMessage } ) => {
                         timeout: 10000000,
                         headers: {
                             'Access-Control-Allow-Origin': '*', // Set the Access-Control-Allow-Origin header
-                        }
+                        },
+                        withCredentials: true,
                 });
 
                 const botMessage = {text: response.data.reply, sender: 'bot'};
