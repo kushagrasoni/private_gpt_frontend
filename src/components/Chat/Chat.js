@@ -32,7 +32,7 @@ const Chat = ({ handleNewMessage } ) => {
         if (inputText !== '') {
             try {
                 // Use the Public IP of the Instance
-                const response = await axios.get('http://172.31.27.119:5000/pvt_gpt',
+                const response = await axios.get('http://3.80.126.248:5000/pvt_gpt',
                     {params: {query: inputText},
                         timeout: 10000000,
                         headers: {
